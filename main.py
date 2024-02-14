@@ -27,19 +27,22 @@ while game_on == True:
             game_on = False
 
         else:
-            player_input = input(f"{player}: Choose a number: ")
 
-            for character in board:
-                if character == player_input:
-                    board = board.replace(character, players[player]["sign"])
-                    players[player]["combination"].append(int(player_input))
+            if game_on == True:
 
-                    if len(players[player]["combination"]) >= 3:
-                        players[player]["combination"].sort()
+                player_input = input(f"{player}: Choose a number: ")
 
-                        for item in winning_combinations:
-                            if set(item) <= set(players[player]["combination"]):
-                                print(f"Congratulations! {player} is the winner!")
-                                game_on = False
+                for char in board:
+                    if char == player_input:
+                        board = board.replace(char, players[player]["sign"])
+                        players[player]["combination"].append(int(player_input))
 
-            print(board)
+                if len(players[player]["combination"]) >= 3:
+                    players[player]["combination"].sort()
+
+                    for item in winning_combinations:
+                        if set(item) <= set(players[player]["combination"]):
+                            print(f"Congratulations! {player} is the winner!")
+                            game_on = False
+
+                print(board)
